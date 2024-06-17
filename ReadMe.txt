@@ -54,6 +54,7 @@ Response:
 - Success: 200 OK
   ```json
   {
+      "success":true,
       "message": "User registered successfully"
   }
   ```
@@ -61,15 +62,15 @@ Response:
 - Validation Error (e.g., password length less than 8): 400 Bad Request
   ```json
   {
-      "error": "Password must be at least 8 characters long"
+      "success":false,
+      "error": "Password should of length greater than or equal to 8"
   }
   ```
 
 - Internal Server Error: 500 Internal Server Error
   ```json
   {
-      "error": "Internal Server Error",
-      "message": "<error message>"
+      "success":false
   }
   ```
 
@@ -81,18 +82,22 @@ Request:
 Response:
 - Success: 200 OK
   ```json
-  {
-      "username": "MakerSharks",
-      "email": "MakerSharks@gmail.com"
-  }
+   {
+       "success": true,
+       "user_details": {
+           "email": "test123@gmail.com",
+           "username": "test1234"
+       },
+       "message": "User Found"
+   }
   ```
 
 - User Not Found: 404 Not Found
   ```json
-  {
-      "error": "User Not Found",
-      "message": "User with username 'MakerSharks' not found"
-  }
+   {
+       "success": false,
+       "message": "User Not Found"
+   }
   ```
 
 Security
