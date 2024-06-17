@@ -69,15 +69,16 @@ Response:
 
 - Internal Server Error: 500 Internal Server Error
   ```json
-  {
-      "success":false
-  }
+{
+    "success": false,
+    "message": "Internal Server Error"
+}
   ```
 
 GET /api/user/fetch/{username}
 
 Request:
-- URL Parameter: `username`
+- URL Parameter: `test1234`
 
 Response:
 - Success: 200 OK
