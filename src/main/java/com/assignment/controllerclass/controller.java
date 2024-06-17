@@ -23,11 +23,12 @@ public class controller {
 	@PostMapping("/register")
 	@Produces("application/json")
 	public ResponseEntity<?> registerUser(@RequestBody String s) {
-		int flag = 0;
+		int flag = -1;
 		try {
 			JSONObject obj = new JSONObject(s);
 			Users user = new Users();
 			if (!obj.has("email") && !obj.has("username") && !obj.has("password")) {
+				flag=0;
 				throw new Exception("Please enter username/email/password");
 			}
 			if (obj.getString("password").length() <= 8) {
@@ -59,7 +60,8 @@ public class controller {
 			} else if (flag == 2) {
 				return new ResponseEntity<>(obj.toString(), HttpStatus.CONFLICT);
 			} else {
-				return new ResponseEntity<>(obj.remove("message").toString(), HttpStatus.INTERNAL_SERVER_ERROR);
+				obj.put("message", "Internal Server Error");
+				return new ResponseEntity<>(obj.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		}
 	}
